@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="aa0145bd-06a5-42e6-a204-975a5b8cf1d2" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="CRUD EMP DATA" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="aa0145bd-06a5-42e6-a204-975a5b8cf1d2fileName">CRUD-EMP-DATA</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="TC_01: Create" id="9ec67af7-7e70-41c8-b834-a3dd22b76d89">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="CREATE EMP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_01: Create" id="a0caa951-bc44-4d88-bac8-67f961d4abd1" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request>{
+"id" : 171,
+  "first_name":"John1",
+  "middle_name": "Smith1",
+  "last_name": "user1",
+  "date_of_birth": "01-01-2000"
+}</con:request>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="292a2481-3baa-4489-aac0-0f11f214427c" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="WaitFor5sec refect create record" id="459157bb-ee54-4748-ba5e-4e50bb57dbc1">
+    <con:settings/>
+    <con:config>
+      <delay>5000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="PropertyTransfer 1" id="19598023-31d8-4be2-b5d8-d16c07257800">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" entitize="false" transferChildNodes="false" ignoreEmpty="false" transferToAll="false">
+        <con:name>id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>TC_01: Create</con:sourceStep>
+        <con:sourcePath>$['id']</con:sourcePath>
+        <con:targetType>empId</con:targetType>
+        <con:targetStep>getEmpId</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="properties" name="getEmpId" id="4d39197b-87f9-46b2-b791-d6a8eafc2818">
+    <con:settings/>
+    <con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:properties>
+        <con:property>
+          <con:name>empId</con:name>
+          <con:value>938341</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_02: GET Create" id="c82eec75-9bfd-4099-a390-79171e17b6c6">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_02: GET Create" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="f372aa87-c0b8-4fa3-8d6d-551430e42790" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${getEmpId#empId}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_03: GET ALL EMP with Specific ID" id="20e15756-8d44-4ca3-b384-a2d905a7849c">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_03: GET ALL EMP with Specific ID" id="e46d334d-ad92-4f7f-af72-f58cc1dd9fc5" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/api/studentDetailsls</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="a9c04927-c748-4768-b1db-0b1602b00269" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="7dc3e5ab-5321-4eb5-9338-ad516d153315" name="Validate response time in milli sec">
+          <con:configuration>
+            <SLA>1000</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Simple Contains" id="dd704cfd-4417-4cb3-8f5b-a6b03277fffa" name="Validate {id} is exists in response json">
+          <con:configuration>
+            <token>${getEmpId#empId}</token>
+            <ignoreCase>false</ignoreCase>
+            <useRegEx>false</useRegEx>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="delay" name="WaitFor4secs" id="61b8de2c-e0d8-484a-ae3e-8d1634b1bdf0">
+    <con:settings/>
+    <con:config>
+      <delay>4000</delay>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_04: Update PUT call" id="82674903-a22f-4943-ac83-c29806a4aca0">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_04: Update PUT call" id="cde51830-da7d-42f1-b048-a4d7552f708f" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request>{
+  "id": ${getEmpId#empId},
+  "first_name": "sample string 2",
+  "middle_name": "sample string 3",
+  "last_name": "sample string 4",
+  "date_of_birth": "01-01-1986"
+}</con:request>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/%7Bid%7D</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="193cc921-ab9b-42ab-bed6-8c09de4ef85d" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${getEmpId#empId}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_05: GET Update - PUT" id="c3350419-0887-4097-ae93-1df928e8eba2">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_05: GET Update - PUT" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="dd9d211b-4915-466f-a304-58e9cada70a0" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${getEmpId#empId}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_06: GET ALL EMP with Specific ID" id="3d3d33c7-0fee-4939-9826-4170bbdce26e">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_06: GET ALL EMP with Specific ID" id="e46d334d-ad92-4f7f-af72-f58cc1dd9fc5" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/api/studentDetailsls</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="a9c04927-c748-4768-b1db-0b1602b00269" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="7dc3e5ab-5321-4eb5-9338-ad516d153315" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Simple Contains" id="25b8679b-6ec7-4717-9af0-b580e94cbb1e" name="Validate {id} is exists in response json">
+          <con:configuration>
+            <token>${getEmpId#empId}</token>
+            <ignoreCase>false</ignoreCase>
+            <useRegEx>false</useRegEx>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_07: DELETE EMP RECORD" id="37855445-4d8a-4830-91f9-97162aa8949d">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="DELETE" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_07: DELETE EMP RECORD" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="7ac51fd6-79bf-497c-b026-7d13f0f92e61" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="935156"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="PropertyTransfer 2" id="97a28544-1964-433d-83f8-c514223ef703">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>msg</con:name>
+        <con:sourceType xsi:nil="true"/>
+        <con:sourceStep xsi:nil="true"/>
+        <con:sourcePath>$['msg']</con:sourcePath>
+        <con:targetType>msgRes</con:targetType>
+        <con:targetStep>delMsg</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="properties" name="delMsg" id="a1e0a7f8-6cd5-4a42-971c-e0099322bf3e">
+    <con:settings/>
+    <con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:properties>
+        <con:property>
+          <con:name>msgRes</con:name>
+          <con:value xsi:nil="true"/>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="TC_08: GET EMP NOT exists when DELETE" id="1f79e1e6-f982-401d-b32f-2d87ccd9919b">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_08: GET EMP NOT exists when DELETE" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="d4170f3a-563f-43b0-b0d0-66b7d4b8a2ee" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="DataAndMetadataAssertion" id="d10c4635-b33a-49fc-b349-aaa785d5d7f3" name="Smart Assertion">
+          <con:configuration xsi:type="con:DataAndMetadataAssertion">
+            <con:mode>Received Data</con:mode>
+            <con:elements>
+              <con:path>$['status']</con:path>
+              <con:element>status</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>false</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['msg']</con:path>
+              <con:element>msg</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>No data Found</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:originalMessage>{"status":"false","msg":"No data Found"}</con:originalMessage>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${getEmpId#empId}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

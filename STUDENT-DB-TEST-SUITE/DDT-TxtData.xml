@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="825fd492-9d8b-4b5a-8438-76bca1f324c7" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="DDT-TxtData" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="825fd492-9d8b-4b5a-8438-76bca1f324c7fileName">DDT-TxtData</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source-txt" id="02912d80-03e1-4b2b-8e22-e75993b0d6b4">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="File">
+        <con:configuration>
+          <fileName>C:/QA/Testing/Release_Process/API/ReadyAPI/datadriven/testdata1.txt</fileName>
+          <separator>,</separator>
+          <trim>true</trim>
+          <charset>Cp1252</charset>
+          <quotedValues>false</quotedValues>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>fName</con:property>
+      <con:property>mName</con:property>
+      <con:property>lName</con:property>
+      <con:property>DOB</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="DDT - Create EMP TXT" id="d69fbb45-9cdb-4467-a281-e810fb03f179">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="CREATE EMP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="DDT - Create EMP TXT" id="a0caa951-bc44-4d88-bac8-67f961d4abd1" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request>{
+"id" : 175,
+  "first_name":"${Data Source-txt#fName}",
+  "middle_name": "${Data Source-txt#mName}",
+  "last_name": "${Data Source-txt#lName}",
+  "date_of_birth": "${Data Source-txt#DOB}"
+}</con:request>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="292a2481-3baa-4489-aac0-0f11f214427c" name="Valid HTTP Status Code 201 when create user">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="20288a9f-be95-44ba-aa01-06dc80e45385" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop-txt_Iteartion" id="8aab171e-c325-4e1f-af19-3ecbe2507652">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source-txt</dataSourceStep>
+      <targetStep>DDT - Create EMP TXT</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

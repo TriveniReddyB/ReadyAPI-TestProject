@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="3a897c98-a74b-4892-82fb-885e857f2826" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="DDT-TC-DATA GENERATOR" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="3a897c98-a74b-4892-82fb-885e857f2826fileName">DDT-TC-DATA-GENERATOR</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source-Data Generator" id="cec52bb1-70c6-46b6-8fcb-58ab7dc14b4e">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Data Generator">
+        <con:configuration>
+          <generatedDataCount>5</generatedDataCount>
+          <generatorsTotalNumber>4</generatorsTotalNumber>
+          <lastSelectedProperty>3</lastSelectedProperty>
+          <GeneratorType0>NAME</GeneratorType0>
+          <PropertyName0>dName</PropertyName0>
+          <repetitionCountdName>0</repetitionCountdName>
+          <repeatValuesdName>false</repeatValuesdName>
+          <NameTypeName0>FirstName</NameTypeName0>
+          <NameGenderName0>Female</NameGenderName0>
+          <GeneratorType1>TIME</GeneratorType1>
+          <PropertyName1>dob</PropertyName1>
+          <repetitionCountdob>0</repetitionCountdob>
+          <repeatValuesdob>false</repeatValuesdob>
+          <DateTimeDataGeneratorCustomFormatdob/>
+          <DateTimeDataGeneratorFormatdob>M/D/YYYY</DateTimeDataGeneratorFormatdob>
+          <DateTimeDataGeneratorIsSequentdob>false</DateTimeDataGeneratorIsSequentdob>
+          <DateTimeDataGeneratorStepDaysdob>1</DateTimeDataGeneratorStepDaysdob>
+          <DateTimeDataGeneratorStepHoursdob>1</DateTimeDataGeneratorStepHoursdob>
+          <DateTimeDataGeneratorStepMinsdob>1</DateTimeDataGeneratorStepMinsdob>
+          <DateTimeDataGeneratorStepSecondsdob>1</DateTimeDataGeneratorStepSecondsdob>
+          <DateTimeDataGeneratorMinDatedob>442752172662</DateTimeDataGeneratorMinDatedob>
+          <DateTimeDataGeneratorMaxDatedob>92178902572662</DateTimeDataGeneratorMaxDatedob>
+          <GeneratorType2>CUSTOM</GeneratorType2>
+          <PropertyName2>lName</PropertyName2>
+          <repetitionCountlName>0</repetitionCountlName>
+          <repeatValueslName>false</repeatValueslName>
+          <CustomStringDataGeneratorFormatlName>trbika</CustomStringDataGeneratorFormatlName>
+          <GeneratorType3>STATE</GeneratorType3>
+          <PropertyName3>mName</PropertyName3>
+          <repetitionCountmName>0</repetitionCountmName>
+          <repeatValuesmName>false</repeatValuesmName>
+          <StatesCountrymName>United States</StatesCountrymName>
+          <StatesFormatmName>Full</StatesFormatmName>
+          <escapeSpaceSequence/>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>dName</con:property>
+      <con:property>mName</con:property>
+      <con:property>lName</con:property>
+      <con:property>dob</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="DataGen - Create new EMP" id="d656558e-f496-4572-9e18-cd73e3c064d1">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="CREATE EMP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="DataGen - Create new EMP" id="a0caa951-bc44-4d88-bac8-67f961d4abd1" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request>{
+  "id": 154,
+  "first_name":"${Data Source-Data Generator#dName}",
+  "middle_name": "${Data Source-Data Generator#mName}",
+  "last_name": "${Data Source-Data Generator#lName}",
+  "date_of_birth": "${Data Source-Data Generator#dob}"
+}</con:request>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="6917f068-62a6-4d65-8e32-33be711ba05f" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="PropertyTransfer 1" id="cb5e7a49-7fab-4ad4-abb1-efbbca12a272">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true">
+        <con:name>id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>DataGen - Create new EMP</con:sourceStep>
+        <con:sourcePath>$['id']</con:sourcePath>
+        <con:targetType>id</con:targetType>
+        <con:targetStep>Data Sink-DataGene</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="Data Sink-DataGene" id="91e3d364-4655-49c2-b4b2-4bc9af971581">
+    <con:settings/>
+    <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSink type="File">
+        <con:configuration>
+          <fileName>C:/QA/Testing/Release_Process/API/ReadyAPI/datadriven/DataSinkFile.txt</fileName>
+          <separator>,</separator>
+          <escape>"</escape>
+          <quote>true</quote>
+          <trim>true</trim>
+          <append>false</append>
+          <encoding>Cp1252</encoding>
+        </con:configuration>
+      </con:dataSink>
+      <con:properties>
+        <con:property>
+          <con:name>id</con:name>
+          <con:value>938238</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop-dataGen" id="4265176c-7395-4d47-8624-77ece14ecea5">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source-Data Generator</dataSourceStep>
+      <targetStep>DataGen - Create new EMP</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="technicalskills" path="/api/studentsDetails" id="f65b193d-47d7-42f7-92a6-c3a1e85177ae" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="f65b193d-47d7-42f7-92a6-c3a1e85177aefileName">technicalskills</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:resource name="studentsDetails" path="" id="52abd746-18bd-4d7c-88b8-2577540d2eb7">
+    <con:settings/>
+    <con:parameters/>
+    <con:method name="CREATE EMP" id="690083a4-bf0a-4409-a26a-4c23879a135b" method="POST">
+      <con:settings/>
+      <con:parameters/>
+      <con:request name="CREATE EMPLOYEE" id="a0caa951-bc44-4d88-bac8-67f961d4abd1" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request>{
+  "id": 154,
+  "first_name":"Anton4",
+  "middle_name": "G",
+  "last_name": "P",
+  "date_of_birth": "01-01-1990"
+}</con:request>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/api/studentsDetails</con:originalUri>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+      </con:request>
+    </con:method>
+    <con:method name="GET EMP Data" id="e3b41592-e423-4cce-a114-b420a0762158" method="GET">
+      <con:settings/>
+      <con:parameters/>
+      <con:request name="GET CREATED EMP" id="ca1ef230-4d35-4acf-8e17-d517c3afdab6" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/935122</con:originalUri>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+      </con:request>
+    </con:method>
+    <con:method name="DELETE EMP DATA" id="31d050a0-454f-4a45-bca8-37975f9096f5" method="DELETE">
+      <con:settings/>
+      <con:parameters/>
+      <con:request name="DELETE EMP" id="ceb3a5b7-a85c-483c-8398-2c3c19aa4d85" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:request>
+    </con:method>
+  </con:resource>
+  <con:resource name="{id}" path="{id}" id="0b05fd36-db2a-4e0a-bd20-76e970140983">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>id</con:name>
+        <con:value>id</con:value>
+        <con:style>TEMPLATE</con:style>
+        <con:default>id</con:default>
+      </con:parameter>
+    </con:parameters>
+    <con:method name="Method 1" id="e00e3b0a-8097-49f0-a6fd-45ad7fe400d6" method="GET">
+      <con:settings/>
+      <con:parameters/>
+      <con:request name="Request 1" id="e55dc6bd-8351-4e03-b186-12eedb6e406e" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:request>
+    </con:method>
+  </con:resource>
+  <con:resource name="GET SINGLE EMP" path="/api/studentsDetails/{id}" id="f755889e-9a4d-41c2-b4c5-50e90ad992d4">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter>
+        <con:name>id</con:name>
+        <con:style>QUERY</con:style>
+      </con:parameter>
+    </con:parameters>
+    <con:method name="Method 1" id="a529e697-a066-4036-ba05-47c4be7cd6e9" method="GET">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>id</con:name>
+          <con:value/>
+          <con:style>QUERY</con:style>
+          <con:default/>
+        </con:parameter>
+      </con:parameters>
+      <con:request name="Request 1" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="935156"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+        </con:parameterOrder>
+      </con:request>
+    </con:method>
+  </con:resource>
+  <con:method name="Method 1" id="05ee4d48-1be7-4870-894f-434dc03c3cfb" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="GET ALL EMP" id="e46d334d-ad92-4f7f-af72-f58cc1dd9fc5" mediaType="application/json">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+      <con:request/>
+      <con:originalUri>http://thetestingworldapi.com/api/studentDetailsls</con:originalUri>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

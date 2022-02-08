@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="36f4bb68-d4a1-4d62-9272-ec5057d5918b" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="DDT-EXCELData" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="36f4bb68-d4a1-4d62-9272-ec5057d5918bfileName">DDT-EXCELData</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source-Excel" id="716196ec-32d4-40dd-9039-d039741ed669">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/QA/Testing/Release_Process/API/ReadyAPI/datadriven/DataSink_xls.xlsx</file>
+          <worksheet>Sheet1</worksheet>
+          <cell>A1</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>fName</con:property>
+      <con:property>mName</con:property>
+      <con:property>lName</con:property>
+      <con:property>DOB</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="DDT- CREATE EMP" id="a551b166-7002-4838-b0ce-81bbb5b5be87">
+    <con:settings/>
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="CREATE EMP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="DDT- CREATE EMP" id="a0caa951-bc44-4d88-bac8-67f961d4abd1" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+        <con:request>{
+"id" : 175,
+  "first_name":"${Data Source-Excel#fName}",
+  "middle_name": "${Data Source-Excel#mName}",
+  "last_name": "${Data Source-Excel#lName}",
+  "date_of_birth": "${Data Source-Excel#DOB}"
+}</con:request>
+        <con:originalUri>http://thetestingworldapi.com/api/studentsDetails/api/studentsDetails</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="292a2481-3baa-4489-aac0-0f11f214427c" name="Valid HTTP Status Code 201 when create user">
+          <con:settings/>
+          <con:configuration>
+            <codes>201</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="20288a9f-be95-44ba-aa01-06dc80e45385" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="PropertyTransfer 1" id="ffd196f1-785d-4c3d-b36b-82e8fc933cba">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" entitize="false" transferToAll="false">
+        <con:name>id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>DDT- CREATE EMP</con:sourceStep>
+        <con:sourcePath>$['id']</con:sourcePath>
+        <con:targetType>id</con:targetType>
+        <con:targetStep>Data Sink-RES Xls</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="Data Sink-RES Xls" id="3c452509-a05d-4b67-860f-bd0919b8b7cd">
+    <con:settings/>
+    <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSink type="Excel">
+        <con:configuration>
+          <file/>
+          <outfile>C:/QA/Testing/Release_Process/API/ReadyAPI/datadriven/DataSink_xls.xlsx</outfile>
+          <worksheet>Sheet1</worksheet>
+          <cell>E1</cell>
+          <evaluateFormulas>false</evaluateFormulas>
+          <append>false</append>
+        </con:configuration>
+      </con:dataSink>
+      <con:properties>
+        <con:property>
+          <con:name>id</con:name>
+          <con:value>938233</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop-excel_itera" id="466fc25f-0b63-4038-beed-603b3b1088c0">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source-Excel</dataSourceStep>
+      <targetStep>DDT- CREATE EMP</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

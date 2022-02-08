@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="saple" path="/saple" id="c2dd4948-38bb-4239-a9e4-5faa581364b2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="c2dd4948-38bb-4239-a9e4-5faa581364b2fileName">saple</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="Method 1" id="27839c1e-38a3-4167-910f-5c00da5b2f55" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Request 1" id="3e327007-2869-4c69-80a6-a97f800bea67" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>http://thetestingworldapi.com</con:endpoint>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>
