@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase id="aa0145bd-06a5-42e6-a204-975a5b8cf1d2" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="CRUD EMP DATA" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
+<con:testCase id="aa0145bd-06a5-42e6-a204-975a5b8cf1d2" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="CRUD EMPLOYEE DATA" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
   <con:settings>
-    <con:setting id="aa0145bd-06a5-42e6-a204-975a5b8cf1d2fileName">CRUD-EMP-DATA</con:setting>
+    <con:setting id="aa0145bd-06a5-42e6-a204-975a5b8cf1d2fileName">CRUD-EMPLOYEE-DATA</con:setting>
   </con:settings>
   <con:testStep type="restrequest" name="TC_01: Create" id="9ec67af7-7e70-41c8-b834-a3dd22b76d89">
     <con:settings/>
@@ -280,7 +280,7 @@
       <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
         <con:name>msg</con:name>
         <con:sourceType xsi:nil="true"/>
-        <con:sourceStep xsi:nil="true"/>
+        <con:sourceStep>TC_07: DELETE EMP RECORD</con:sourceStep>
         <con:sourcePath>$['msg']</con:sourcePath>
         <con:targetType>msgRes</con:targetType>
         <con:targetStep>delMsg</con:targetStep>

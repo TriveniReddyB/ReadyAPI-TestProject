@@ -38,6 +38,7 @@
   <con:entry key="Tool Args" value=""/>
   <con:entry key="Save Project" value="true"/>
 </xml-fragment>]]></con:setting>
+    <con:setting id="70c32ee6-8a34-4e52-aef6-388f8ccb510dfileName">thetestingworldapi-readyapi-project</con:setting>
   </con:settings>
   <con:requirements/>
   <con:properties/>
@@ -46,7 +47,6 @@
   <con:jmsConnectionContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
-  <con:reporting/>
   <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
     <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
 // This code is often used for adding custom authentication to ReadyAPI functional tests
