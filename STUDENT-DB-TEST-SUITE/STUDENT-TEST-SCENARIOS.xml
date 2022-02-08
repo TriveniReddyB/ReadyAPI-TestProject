@@ -25,6 +25,7 @@
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters/>
+        <con:parameterOrder/>
       </con:restRequest>
     </con:config>
   </con:testStep>
@@ -93,6 +94,7 @@
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters/>
+        <con:parameterOrder/>
       </con:restRequest>
     </con:config>
   </con:testStep>

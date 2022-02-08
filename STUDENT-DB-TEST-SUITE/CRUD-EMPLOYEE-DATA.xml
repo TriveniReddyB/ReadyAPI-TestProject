@@ -63,12 +63,12 @@
       <con:properties>
         <con:property>
           <con:name>empId</con:name>
-          <con:value>938341</con:value>
+          <con:value>938405</con:value>
         </con:property>
       </con:properties>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="TC_02: GET Create" id="c82eec75-9bfd-4099-a390-79171e17b6c6">
+  <con:testStep type="restrequest" name="TC_02: GET Create" id="a1952931-1dc8-484f-a6d8-bea284d2ffdf">
     <con:settings/>
     <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <con:restRequest name="TC_02: GET Create" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json">
@@ -78,10 +78,15 @@
         <con:endpoint>http://thetestingworldapi.com</con:endpoint>
         <con:request/>
         <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
-        <con:assertion type="Valid HTTP Status Codes" id="f372aa87-c0b8-4fa3-8d6d-551430e42790" name="Valid HTTP Status Codes">
+        <con:assertion type="Valid HTTP Status Codes" id="fb991b00-cfcb-4fca-8f52-8a73f1e5ea0d" name="Valid HTTP Status Codes">
           <con:settings/>
           <con:configuration>
             <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a80e16ba-9be4-4898-98cb-55c81858412c" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
           </con:configuration>
         </con:assertion>
         <con:credentials>
@@ -132,13 +137,8 @@
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters/>
+        <con:parameterOrder/>
       </con:restRequest>
-    </con:config>
-  </con:testStep>
-  <con:testStep type="delay" name="WaitFor4secs" id="61b8de2c-e0d8-484a-ae3e-8d1634b1bdf0">
-    <con:settings/>
-    <con:config>
-      <delay>4000</delay>
     </con:config>
   </con:testStep>
   <con:testStep type="restrequest" name="TC_04: Update PUT call" id="82674903-a22f-4943-ac83-c29806a4aca0">
@@ -177,20 +177,25 @@
       </con:restRequest>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="TC_05: GET Update - PUT" id="c3350419-0887-4097-ae93-1df928e8eba2">
+  <con:testStep type="restrequest" name="TC_05: GET EMP AFTER Update" id="fc4177fa-58b9-4b93-9845-487f29481ead">
     <con:settings/>
     <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <con:restRequest name="TC_05: GET Update - PUT" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json">
+      <con:restRequest name="TC_05: GET EMP AFTER Update" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
         </con:settings>
         <con:endpoint>http://thetestingworldapi.com</con:endpoint>
         <con:request/>
         <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
-        <con:assertion type="Valid HTTP Status Codes" id="dd9d211b-4915-466f-a304-58e9cada70a0" name="Valid HTTP Status Codes">
+        <con:assertion type="Valid HTTP Status Codes" id="fb991b00-cfcb-4fca-8f52-8a73f1e5ea0d" name="Valid HTTP Status Codes">
           <con:settings/>
           <con:configuration>
             <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a80e16ba-9be4-4898-98cb-55c81858412c" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
           </con:configuration>
         </con:assertion>
         <con:credentials>
@@ -241,6 +246,7 @@
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters/>
+        <con:parameterOrder/>
       </con:restRequest>
     </con:config>
   </con:testStep>
@@ -301,46 +307,25 @@
       </con:properties>
     </con:config>
   </con:testStep>
-  <con:testStep type="restrequest" name="TC_08: GET EMP NOT exists when DELETE" id="1f79e1e6-f982-401d-b32f-2d87ccd9919b">
+  <con:testStep type="restrequest" name="TC_008: GET EMP NOT exists when DELETE" id="05115fb6-b90e-4c7d-844a-3301e214fda9">
     <con:settings/>
-    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <con:restRequest name="TC_08: GET EMP NOT exists when DELETE" id="413627cb-c774-4884-89fc-f7e52e3d7b42" mediaType="application/json" postQueryString="false">
+    <con:config service="STUDENT DATABASE" resourcePath="/api/studentsDetails" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="TC_008: GET EMP NOT exists when DELETE" id="e46d334d-ad92-4f7f-af72-f58cc1dd9fc5" mediaType="application/json">
         <con:settings>
           <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
         </con:settings>
         <con:endpoint>http://thetestingworldapi.com</con:endpoint>
         <con:request/>
-        <con:originalUri>http://thetestingworldapi.com/test/api/studentsDetails</con:originalUri>
-        <con:assertion type="Valid HTTP Status Codes" id="d4170f3a-563f-43b0-b0d0-66b7d4b8a2ee" name="Valid HTTP Status Codes">
+        <con:originalUri>http://thetestingworldapi.com/api/studentDetailsls</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="cd4d9d0e-88da-455c-823d-fffab8c01296" name="Valid HTTP Status Codes">
           <con:settings/>
           <con:configuration>
             <codes>200</codes>
           </con:configuration>
         </con:assertion>
-        <con:assertion type="DataAndMetadataAssertion" id="d10c4635-b33a-49fc-b349-aaa785d5d7f3" name="Smart Assertion">
-          <con:configuration xsi:type="con:DataAndMetadataAssertion">
-            <con:mode>Received Data</con:mode>
-            <con:elements>
-              <con:path>$['status']</con:path>
-              <con:element>status</con:element>
-              <con:operatorId>1</con:operatorId>
-              <con:enabled>true</con:enabled>
-              <con:expectedValue>false</con:expectedValue>
-              <con:caseSensitive>true</con:caseSensitive>
-              <con:numberType>false</con:numberType>
-              <con:expectedDataType>1</con:expectedDataType>
-            </con:elements>
-            <con:elements>
-              <con:path>$['msg']</con:path>
-              <con:element>msg</con:element>
-              <con:operatorId>1</con:operatorId>
-              <con:enabled>true</con:enabled>
-              <con:expectedValue>No data Found</con:expectedValue>
-              <con:caseSensitive>true</con:caseSensitive>
-              <con:numberType>false</con:numberType>
-              <con:expectedDataType>1</con:expectedDataType>
-            </con:elements>
-            <con:originalMessage>{"status":"false","msg":"No data Found"}</con:originalMessage>
+        <con:assertion type="Response SLA Assertion" id="f702e355-4a69-4042-88f8-b386e4ac0112" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
           </con:configuration>
         </con:assertion>
         <con:credentials>
@@ -348,12 +333,8 @@
           <con:authType>No Authorization</con:authType>
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-        <con:parameters>
-          <con:entry key="id" value="${getEmpId#empId}"/>
-        </con:parameters>
-        <con:parameterOrder>
-          <con:entry>id</con:entry>
-        </con:parameterOrder>
+        <con:parameters/>
+        <con:parameterOrder/>
       </con:restRequest>
     </con:config>
   </con:testStep>

@@ -66,6 +66,7 @@
         </con:credentials>
         <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
         <con:parameters/>
+        <con:parameterOrder/>
       </con:request>
     </con:method>
   </con:resource>
@@ -152,6 +153,7 @@
       </con:credentials>
       <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
       <con:parameters/>
+      <con:parameterOrder/>
     </con:request>
   </con:method>
 </con:resource>

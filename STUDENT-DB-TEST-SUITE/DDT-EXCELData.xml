@@ -69,7 +69,7 @@
         <con:sourceType>Response</con:sourceType>
         <con:sourceStep>DDT- CREATE EMP</con:sourceStep>
         <con:sourcePath>$['id']</con:sourcePath>
-        <con:targetType>id</con:targetType>
+        <con:targetType xsi:nil="true"/>
         <con:targetStep>Data Sink-RES Xls</con:targetStep>
         <con:targetPath/>
         <con:type>JSONPATH</con:type>
